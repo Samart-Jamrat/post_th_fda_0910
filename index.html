@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>แจ้งรายชื่อผู้ได้รับสิทธิ์เข้าร่วมอบรม</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #7a1f1f;
+      --primary-dark: #4d1212;
+      --accent: #f5b041;
+      --bg: #f7f3ee;
+      --card: #ffffff;
+      --text: #222222;
+      --muted: #666666;
+      --border: #eadfd6;
+      --success: #1f7a4d;
+      --blue: #1f5f99;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Sarabun", sans-serif;
+      background: linear-gradient(180deg, #fff8ef 0%, #f7f3ee 100%);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      padding: 36px 18px 42px;
+      text-align: center;
+    }
+
+    .hero .tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      margin: 0 auto;
+      max-width: 1050px;
+      font-size: clamp(1.45rem, 3vw, 2.35rem);
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .hero p {
+      margin: 16px auto 0;
+      max-width: 850px;
+      font-size: 1.05rem;
+      opacity: 0.94;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 28px));
+      margin: -26px auto 46px;
+    }
+
+    .notice-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: 0 14px 35px rgba(74, 35, 25, 0.11);
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    .notice-card h2,
+    .day-card h2,
+    .section-card h2 {
+      margin: 0 0 14px;
+      color: var(--primary);
+      font-size: 1.35rem;
+    }
+
+    .important {
+      background: #fff3cd;
+      border-left: 6px solid var(--accent);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-weight: 600;
+      color: #5d4300;
+      margin: 18px 0 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 820px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .notice-card {
+        padding: 18px;
+      }
+    }
+
+    .day-card,
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 8px 22px rgba(74, 35, 25, 0.07);
+    }
+
+    .session {
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      margin-top: 16px;
+    }
+
+    .session:first-of-type {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    .session h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+      color: var(--primary-dark);
+    }
+
+    .topic {
+      font-weight: 600;
+    }
+
+    .note {
+      background: #f8f5f2;
+      border-radius: 12px;
+      padding: 10px 12px;
+      color: #4b4b4b;
+      margin: 10px 0 0;
+    }
+
+    .link-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    a.button-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 9px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      background: var(--blue);
+      color: white;
+      font-weight: 600;
+      text-align: center;
+      word-break: break-word;
+    }
+
+    a.button-link.secondary {
+      background: var(--success);
+    }
+
+    a.button-link.line {
+      background: #06c755;
+      color: #073b1f;
+    }
+
+    .plain-link {
+      word-break: break-all;
+      color: var(--blue);
+    }
+
+    .meta {
+      color: var(--muted);
+      margin: 4px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #f0e1d9;
+      color: var(--primary-dark);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      margin-bottom: 8px;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 22px;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      margin-top: 8px;
+      padding-left: 1.35rem;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    .small {
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="tag">แจ้งรายชื่อผู้ได้รับสิทธิ์เข้าร่วมอบรมและข้อมูลประกอบการอบรม</div>
+    <h1>โครงการ “ปัญหาการนำยาไปใช้ในทางที่ผิด ยาไม่มีทะเบียน ยาปลอม การโฆษณาขายยาทางออนไลน์ และแนวทางเฝ้าระวังปัญหาคุณภาพยา”</h1>
+    <p>จัดประชุมวันที่ 9–10 มิถุนายน 2569</p>
+  </header>
+
+  <main class="container">
+    <section class="notice-card">
+      <h2>เรียน ผู้เข้าร่วมอบรม</h2>
+      <p>
+        ข้าพเจ้าเป็นผู้ประสานงานที่ได้รับมอบหมายให้ดูแลการจัดประชุม/อบรมของกลุ่มเฝ้าระวังและบังคับใช้กฎหมาย
+        กองยา สำนักงานคณะกรรมการอาหารและยา ขอเรียนแจ้งว่า ท่านได้รับสิทธิ์เข้าร่วมอบรมโครงการ
+        <strong>“ปัญหาการนำยาไปใช้ในทางที่ผิด ยาไม่มีทะเบียน ยาปลอม การโฆษณาขายยาทางออนไลน์ และแนวทางเฝ้าระวังปัญหาคุณภาพยา”</strong>
+        จัดประชุมในวันที่ 9–10 มิถุนายน 2569
+      </p>
+      <div class="important">กรุณาให้ความสำคัญต่อข้อมูลต่อไปนี้</div>
+    </section>
+
+    <div class="grid">
+      <section class="day-card">
+        <h2>วันที่ 9 มิถุนายน 2569</h2>
+
+        <article class="session">
+          <span class="badge">ช่วงเช้า</span>
+          <h3>1. อภิปราย</h3>
+          <p class="topic">“สถานการณ์ปัญหายาปลอม ยาไม่มีทะเบียนตำรับยา โฆษณาขายยาทางออนไลน์ในภาคอีสาน”</p>
+          <div class="link-list">
+            <a class="button-link" href="https://us06web.zoom.us/j/87264039576?pwd=lPXxTQPSJO8Id8qVWwkQTGogUB12yz.1" target="_blank" rel="noopener">เข้าห้องประชุม Zoom</a>
+          </div>
+          <p class="meta">Passcode: <strong>708312</strong></p>
+          <p>ผู้เข้าอบรมจะต้องลงทะเบียนเข้า-ออก โดยจะมี QR-Code หรือ ลิงก์ให้ในช่วงการอบรม</p>
+          <p class="note">หมายเหตุ: ลงทะเบียนเข้าไม่เกิน 09.30 น. และลงทะเบียนออกเวลา 12.00 น. มิฉะนั้นจะไม่สามารถลงทะเบียนได้</p>
+        </article>
+
+        <article class="session">
+          <span class="badge">ช่วงบ่าย</span>
+          <h3>2. อภิปรายกลุ่มย่อย</h3>
+          <p class="topic">“วิเคราะห์สถานการณ์ปัญหายาปลอม ยาไม่มีทะเบียนตำรับยา โฆษณาขายยาทางออนไลน์”</p>
+          <div class="link-list">
+            <a class="button-link" href="https://us06web.zoom.us/j/87264039576?pwd=lPXxTQPSJO8Id8qVWwkQTGogUB12yz.1" target="_blank" rel="noopener">เข้าห้องประชุม Zoom</a>
+            <a class="button-link secondary" href="https://us06web.zoom.us/launch/jc/86134629315" target="_blank" rel="noopener">Meeting Chat Link</a>
+          </div>
+          <p class="meta">Meeting ID: <strong>861 3462 9315</strong></p>
+          <p class="meta">Passcode: <strong>266283</strong></p>
+          <p>ผู้เข้าอบรมจะต้องลงทะเบียนเข้า-ออก โดยจะมี QR-Code หรือ ลิงก์ให้ในช่วงการอบรม</p>
+          <p class="note">หมายเหตุ: ลงทะเบียนเข้าไม่เกิน 13.30 น. และลงทะเบียนออกเวลา 16.00 น. มิฉะนั้นจะไม่สามารถลงทะเบียนได้</p>
+        </article>
+      </section>
+
+      <section class="day-card">
+        <h2>วันที่ 10 มิถุนายน 2569</h2>
+
+        <article class="session">
+          <span class="badge">ช่วงเช้า</span>
+          <h3>3. อภิปราย</h3>
+          <p class="topic">“แนวทางการดำเนินการเชื่อมต่อข้อมูลการดำเนินการเฝ้าระวังและสืบสวนในภาคอีสาน”</p>
+          <div class="link-list">
+            <a class="button-link" href="https://us06web.zoom.us/j/84528077463?pwd=1eiwPcxvAPh7mzEwdva4itA254sgL4.1" target="_blank" rel="noopener">เข้าห้องประชุม Zoom</a>
+          </div>
+          <p class="meta">Passcode: <strong>688600</strong></p>
+          <p>ผู้เข้าอบรมจะต้องลงทะเบียนเข้า-ออก โดยจะมี QR-Code หรือ ลิงก์ให้ในช่วงการอบรม</p>
+          <p class="note">หมายเหตุ: ลงทะเบียนเข้าไม่เกิน 09.30 น. และลงทะเบียนออกเวลา 12.00 น. มิฉะนั้นจะไม่สามารถลงทะเบียนได้</p>
+        </article>
+
+        <article class="session">
+          <span class="badge">ช่วงบ่าย</span>
+          <h3>4. อภิปรายกลุ่มย่อย</h3>
+          <p class="topic">“จัดทำแผนดำเนินการเฝ้าระวังและสืบสวนการลักลอบผลิตยาปลอมและยาไม่มีทะเบียนสำหรับภาคอีสาน”</p>
+          <div class="link-list">
+            <a class="button-link" href="https://us06web.zoom.us/j/87264039576?pwd=lPXxTQPSJO8Id8qVWwkQTGogUB12yz.1" target="_blank" rel="noopener">เข้าห้องประชุม Zoom</a>
+            <a class="button-link secondary" href="https://us06web.zoom.us/launch/jc/86134629315" target="_blank" rel="noopener">Meeting Chat Link</a>
+          </div>
+          <p class="meta">Meeting ID: <strong>861 3462 9315</strong></p>
+          <p class="meta">Passcode: <strong>266283</strong></p>
+          <p>ผู้เข้าอบรมจะต้องลงทะเบียนเข้า-ออก โดยจะมี QR-Code หรือ ลิงก์ให้ในช่วงการอบรม</p>
+          <p class="note">หมายเหตุ: ลงทะเบียนเข้าไม่เกิน 13.30 น. และลงทะเบียนออกเวลา 16.00 น. มิฉะนั้นจะไม่สามารถลงทะเบียนได้</p>
+        </article>
+      </section>
+    </div>
+
+    <section class="section-card" style="margin-top:18px;">
+      <h2>ข้อมูลเพิ่มเติม</h2>
+
+      <div class="link-list">
+        <a class="button-link" href="https://drive.google.com/drive/folders/1zTnTBOmm03BIeshnkmFtS7nivvmeRyqY?usp=sharing" target="_blank" rel="noopener">5. เอกสารประกอบการอบรม</a>
+        <a class="button-link" href="https://canva.link/q86hwi5i2vtsjcp" target="_blank" rel="noopener">6. หน้าแสดง Link ทำ Post-test</a>
+      </div>
+
+      <h3>7. แบบประเมินความพึงพอใจ</h3>
+      <div class="link-list">
+        <a class="button-link secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSdS7DifF6QNwi5SJoh_rc2sHsANZN8ouZVZBEAgnBLTbRGI_g/viewform?usp=dialog" target="_blank" rel="noopener">แบบประเมินวันที่ 9 มิ.ย. 69</a>
+        <a class="button-link secondary" href="https://docs.google.com/forms/d/e/1FAIpQLScwqzwirjMwmHVB_q_5T60mCHURRmyfScS65_Dnw5W9HNxYqg/viewform?usp=dialog" target="_blank" rel="noopener">แบบประเมินวันที่ 10 มิ.ย. 69</a>
+      </div>
+
+      <h3>8. ตรวจสอบรายชื่อกลุ่มย่อย</h3>
+      <div class="link-list">
+        <a class="button-link" href="https://docs.google.com/spreadsheets/d/178HwGGSeYc2oTusHIUrNeAhPR5AA1Z2h4ySjr99sVsA/edit?gid=0#gid=0" target="_blank" rel="noopener">กลุ่มที่ 1</a>
+        <a class="button-link" href="https://docs.google.com/spreadsheets/d/1mLnwcWoDAZR8rgTBFh3WZVGMCCzgQqpEKmDVhETzkQE/edit?gid=0#gid=0" target="_blank" rel="noopener">กลุ่มที่ 2</a>
+        <a class="button-link" href="https://docs.google.com/spreadsheets/d/1q9iOlEOvoPA0EblMPayOjHoGRrk4ZJTGBUicwDMZMiI/edit?gid=0#gid=0" target="_blank" rel="noopener">กลุ่มที่ 3</a>
+      </div>
+    </section>
+
+    <section class="section-card" style="margin-top:18px;">
+      <h2>ช่องทางแจ้งปัญหาการเข้า Zoom</h2>
+      <p>
+        สำหรับท่านใดพบปัญหาในการเข้า Zoom สามารถแจ้งได้ใน OpenChat สำหรับผู้อบรมมีปัญหาในการเข้า Zoom
+      </p>
+      <div class="link-list">
+        <a class="button-link line" href="https://line.me/ti/g2/qvCmxSm62BvobITb_WTzo1arf-q5Geah6hGLpQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener">เข้าร่วม LINE OpenChat</a>
+      </div>
+      <p class="small">
+        “โครงการอบรม ปัญหาการนำยาไปใช้ในทางที่ผิด ฯ”
+      </p>
+    </section>
+
+    <div class="footer">
+      ขอแสดงความนับถือ<br>
+      ผู้ประสานงานโครงการ
+    </div>
+  </main>
+</body>
+</html>
